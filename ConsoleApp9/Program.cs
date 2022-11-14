@@ -116,7 +116,7 @@
 
                 if (char.ToUpper(player) == player)
                 {
-                    if (selecti - tilei == 2 && selecti == 6 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei + 1, tilej].Contains(' '))
+                    if (selecti - tilei == 2 && selecti == 6 && selectj-tilej== 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei + 1, tilej].Contains(' '))
                     {
                         return true;
                     }
@@ -127,7 +127,7 @@
                 }
                 else
                 {
-                    if (selecti - tilei == -2 && selecti == 1 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei - 1, tilej].Contains(' ')&&selectj-tilej==0)
+                    if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei - 1, tilej].Contains(' ')&&selectj-tilej==0)
                     {
                         return true;
                     }
