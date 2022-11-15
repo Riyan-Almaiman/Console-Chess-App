@@ -27,23 +27,7 @@
 
             int[] arr = new int[2];
             //indexes for comparison and logic 
-            int[] indexselecttest(string select)
-            {
-                int[] array = new int[2];
-                for (int i = 0; i <= 7; i++)
-                {
-
-                    for (int j = 0; j <= 7; j++)
-                    {
-
-
-                        if (changes.BoardLayout[i, j] == select) { array[0] = i; array[1] = j; }
-
-                    }
-
-                }
-                return array;
-            }
+      
             int[] indexselect(string select)
             {
                 int[] array = new int[2];
