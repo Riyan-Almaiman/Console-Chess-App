@@ -54,6 +54,9 @@ namespace ConsoleApp9
 
         public void Print() {
 
+            Console.WriteLine("Legend: Use capital letters if you're green, lowercase if you're blue");
+            Console.WriteLine("R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen");
+            Console.WriteLine();
 
             int count = 1;
             int row = 1;

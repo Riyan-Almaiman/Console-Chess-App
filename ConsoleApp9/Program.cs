@@ -434,6 +434,10 @@
                 void pieceselect() {
                     while (true)
                     {
+
+                        Console.Clear();
+                        changes.Print();
+
                         Console.WriteLine("select piece to move");
 
                         select = Console.ReadLine();
@@ -650,13 +654,20 @@
 
                         }
 
+                        Console.Clear();
+                        changes.Print();
+
                         Console.WriteLine($"Selected Piece: {select} \nPick a tile to move to or type 'BACK' to pick another piece");
 
                         tile = Console.ReadLine();
                         tile = tile.ToUpper();
 
 
-                        if(tile == "BACK") { pieceselect(); }
+                        if(tile == "BACK")
+                        {
+                            Console.Clear();
+                            changes.Print();
+                            pieceselect(); }
                         int[] refadd = indextile(tile);
 
 
@@ -668,6 +679,9 @@
                             {
                                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
                                 Console.ResetColor();
+                                Console.Clear();
+                                changes.Print();
+
                             }
                             else { break; }
                         }
@@ -676,6 +690,9 @@
                             if (!queenlogic(address, refadd))
                             {
                                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
+                                Console.Clear();
+                                changes.Print();
+
                                 Console.ResetColor();
                             }
                             else { break; }
@@ -687,6 +704,9 @@
                             {
                                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
                                 Console.ResetColor();
+                                Console.Clear();
+                                changes.Print();
+
                             }
                             else
                             {
@@ -697,6 +717,9 @@
                             if (!knightlogic(address, refadd))
                             {
                                 Console.WriteLine("Invalid Move");
+                                Console.Clear();
+                                changes.Print();
+
 
                             }
                             else { break; }
@@ -706,6 +729,9 @@
                             if (!rooklogic(address, refadd))
                             {
                                 Console.WriteLine("Invalid Move");
+                                Console.Clear();
+                                changes.Print();
+
 
                             }
                             else { break; }
@@ -714,10 +740,10 @@
                         {
                             if (!bishoplogic(address, refadd))
                             {
-                                Console.SetCursorPosition(0, Console.CursorTop - 1);
-                                ClearCurrentConsoleLine();
-                                Console.SetCursorPosition(0, Console.CursorTop - 1);
-                                ClearCurrentConsoleLine();
+
+                                Console.Clear();
+                                changes.Print();
+
                                 Console.WriteLine("Invalid Move");
 
                             }
@@ -730,9 +756,7 @@
 
 
 
-                Console.Clear();
-                changes.Print();
-
+                
 
 
 
