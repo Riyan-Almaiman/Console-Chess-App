@@ -419,6 +419,8 @@
             {
                 if (changes.deadpieces.Contains("K1")|| changes.deadpieces.Contains("k1"))
                 {
+                    Console.Clear();
+                    changes.Print();
                     break;
                 }
                 Console.WriteLine();
@@ -521,8 +523,11 @@
                 {
                     foreach (string i in BoardLayout)
                     {
+                        
                         int[] arr = indextile(i);
                         if (rooklogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        if (rooklogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+
 
 
 

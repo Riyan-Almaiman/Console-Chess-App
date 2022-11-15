@@ -226,9 +226,13 @@ namespace ConsoleApp9
                 Console.ResetColor();
             }
 
-            if (deadpieces.Contains("K8")|| deadpieces.Contains("K1"))
+            if (deadpieces.Contains("K1") )
             {
-                Console.WriteLine("Game over!");
+                Console.WriteLine("Game over! Blue wins!");
+            }
+            if ( deadpieces.Contains("k1"))
+            {
+                Console.WriteLine("Game over! Green wins");
             }
 
         }
