@@ -25,7 +25,7 @@ namespace ConsoleApp9
 
 
         string[] side1pieces = { "r1", "n1", "b1", "k1", "q1", "b2", "n2", "r2" };
-        string[] side2pieces = {  "R1", "N1", "B1", "K1", "Q1", "B2", "N2", "R2" };
+        string[] side2pieces = {  "R1", "N1", "B1", "Q1", "K1", "B2", "N2", "R2" };
 
 
         
