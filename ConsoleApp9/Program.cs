@@ -94,39 +94,7 @@
 
             } //fill tile addresses
             fillboardaddresses();
-            void pawnmoves(int[] selectindex)
-            {
-
-                foreach (string i in BoardLayout)
-                {
-                    int[] arr = indextile(i);
-                    if (pawnlogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
-
-
-
-
-                }
-
-                Console.Clear();
-                changes.Print();
-                Thread.Sleep(1000);
-
-                foreach (string i in BoardLayout)
-                {
-                    int[] arr = indextile(i);
-
-                    if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
-
-
-
-
-                }
-                Console.Clear();
-                changes.Print();
-
-
-
-            }
+           
 
             bool kinglogic(int[] selectindex, int[] tileindex)
             {
@@ -163,7 +131,7 @@
                 int selectj = selectindex[1];
                 int tilej = tileindex[1];
 
-                char player = changes.BoardLayout[selecti, selectj][0];
+              char player = changes.BoardLayout[selecti, selectj][0];
                 if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToUpper() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToUpper() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
                 if (changes.BoardLayout[tilei, tilej] == changes.BoardLayout[tilei, tilej].ToLower() && changes.BoardLayout[selecti, selectj] == changes.BoardLayout[selecti, selectj].ToLower() && !changes.BoardLayout[tilei, tilej].Contains(' ')) { return false; }
 
@@ -180,11 +148,15 @@
                 }
                 else
                 {
-                    if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei +1, tilej].Contains(' ')&&selectj-tilej==0)
+                    if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei -1, tilej].Contains(' '))
                     {
                         return true;
                     }
-                     if (selecti - tilei == -1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' ')) { return true; }
+                    if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei - 1, tilej].Contains('X'))
+                    {
+                        return true;
+                    }
+                    if (selecti - tilei == -1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' ')) { return true; }
                      if (selecti - tilei == -1 && Math.Abs(selectj - tilej) == 1 && changes.pieces.Contains(changes.BoardLayout[tilei, tilej])) { return true; }
                     else return false;
                 }
@@ -461,6 +433,39 @@
                 pieceselect();
                
                 tileselect();
+                void pawnmoves(int[] selectindex)
+                {
+
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+                        if (pawnlogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+
+
+
+
+                    }
+
+                    Console.Clear();
+                    changes.Print();
+                    Thread.Sleep(1000);
+
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+
+                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
+
+
+
+
+                    }
+                    Console.Clear();
+                    changes.Print();
+
+
+
+                }
                 void queenmoves(int[] selectindex)
                 {
                     foreach (string i in BoardLayout)
@@ -716,10 +721,10 @@
                         {
                             if (!knightlogic(address, refadd))
                             {
-                                Console.WriteLine("Invalid Move");
+
                                 Console.Clear();
                                 changes.Print();
-
+                                Console.WriteLine("Invalid Move");
 
                             }
                             else { break; }
@@ -728,10 +733,10 @@
                         {
                             if (!rooklogic(address, refadd))
                             {
-                                Console.WriteLine("Invalid Move");
+
                                 Console.Clear();
                                 changes.Print();
-
+                                Console.WriteLine("Invalid Move");
 
                             }
                             else { break; }
@@ -756,7 +761,9 @@
 
 
 
-                
+                Console.Clear();
+                changes.Print();
+
 
 
 
