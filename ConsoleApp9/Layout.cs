@@ -96,7 +96,7 @@ namespace ConsoleApp9
                     Console.ResetColor();
 
                 }
-                else if (i == "XX")
+                else if (i == "XX"&&count!=8)
                 {
 
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -142,11 +142,26 @@ namespace ConsoleApp9
                     if (count == 8)
                     {
 
-                        Console.WriteLine("|  {0}  |", i); count = 1;
-                        Console.ForegroundColor = ConsoleColor.DarkYellow;
-                        Console.Write($"{row}");
-                        Console.ResetColor();
-                        row++;
+                        if (i == "XX")
+                        {
+                            Console.ForegroundColor = ConsoleColor.Red; count = 1;
+                            Console.WriteLine("|  {0}  |", i); Console.ResetColor(); Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{row}");
+                            Console.ResetColor();
+                            row++;
+                        }
+
+
+
+
+                        else
+                        {
+                            Console.WriteLine("|  {0}  |", i); count = 1;
+                            Console.ForegroundColor = ConsoleColor.DarkYellow;
+                            Console.Write($"{row}");
+                            Console.ResetColor();
+                            row++;
+                        }
 
                         void printnum()
                         {

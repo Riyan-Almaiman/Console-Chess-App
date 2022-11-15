@@ -94,6 +94,39 @@
 
             } //fill tile addresses
             fillboardaddresses();
+            void pawnmoves(int[] selectindex)
+            {
+
+                foreach (string i in BoardLayout)
+                {
+                    int[] arr = indextile(i);
+                    if (pawnlogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+
+
+
+
+                }
+
+                Console.Clear();
+                changes.Print();
+                Thread.Sleep(1000);
+
+                foreach (string i in BoardLayout)
+                {
+                    int[] arr = indextile(i);
+
+                    if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
+
+
+
+
+                }
+                Console.Clear();
+                changes.Print();
+
+
+
+            }
 
             bool kinglogic(int[] selectindex, int[] tileindex)
             {
@@ -419,21 +452,14 @@
                 }
                 
                 pieceselect();
-                if (select.Contains('P') || select.Contains('p'))
-                {
-                    pawnmoves(address);
-                    Thread.Sleep(1000);
-                    pawnmovesreset(address);
-                }
+               
                 tileselect();
-
-                void pawnmoves(int[] selectindex)
+                void queenmoves(int[] selectindex)
                 {
-
                     foreach (string i in BoardLayout)
                     {
                         int[] arr = indextile(i);
-                        if (pawnlogic(selectindex, arr)&& changes.BoardLayout[arr[0], arr[1]]=="  ") { changes.BoardLayout[arr[0],arr[1]] = "XX"; }
+                        if (queenlogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
 
 
 
@@ -442,15 +468,137 @@
 
                     Console.Clear();
                     changes.Print();
+                    Thread.Sleep(1000);
 
-                }
-                void pawnmovesreset(int[] selectindex)
-                {
                     foreach (string i in BoardLayout)
                     {
                         int[] arr = indextile(i);
 
-                        if (changes.BoardLayout[arr[0], arr[1]]=="XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
+                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
+
+
+
+
+                    }
+                    Console.Clear();
+                    changes.Print();
+
+
+                }
+                void knightmoves(int[] selectindex)
+                {
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+                        if (knightlogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+
+
+
+
+                    }
+
+                    Console.Clear();
+                    changes.Print();
+                    Thread.Sleep(1000);
+
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+
+                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
+
+
+
+
+                    }
+                    Console.Clear();
+                    changes.Print();
+
+
+                }
+                void rookmoves(int[] selectindex)
+                {
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+                        if (rooklogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+
+
+
+
+                    }
+
+                    Console.Clear();
+                    changes.Print();
+                    Thread.Sleep(1000);
+
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+
+                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
+
+
+
+
+                    }
+                    Console.Clear();
+                    changes.Print();
+
+
+                }
+                void bishopmoves(int[] selectindex)
+                {
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+                        if (bishoplogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+
+
+
+
+                    }
+
+                    Console.Clear();
+                    changes.Print();
+                    Thread.Sleep(1000);
+
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+
+                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
+
+
+
+
+                    }
+                    Console.Clear();
+                    changes.Print();
+
+
+                }
+                void kingmoves(int[] selectindex)
+                {
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+                        if (kinglogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+
+
+
+
+                    }
+
+                    Console.Clear();
+                    changes.Print();
+                    Thread.Sleep(1000);
+
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+
+                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
 
 
 
@@ -465,7 +613,36 @@
                 {
                     while (true)
                     {
-                        
+                        if (select.Contains('P') || select.Contains('p'))
+                        {
+                            pawnmoves(address);
+
+                        }
+                        if (select.Contains('q') || select.Contains('Q'))
+                        {
+                            queenmoves(address);
+
+                        }
+                        if (select.Contains('n') || select.Contains('N'))
+                        {
+                            knightmoves(address);
+
+                        }
+                        if (select.Contains('B') || select.Contains('b'))
+                        {
+                            bishopmoves(address);
+
+                        }
+                        if (select.Contains('r') || select.Contains('R'))
+                        {
+                            rookmoves(address);
+
+                        }
+                        if (select.Contains('K') || select.Contains('k'))
+                        {
+                            kingmoves(address);
+
+                        }
 
                         Console.WriteLine($"Selected Piece: {select} \nPick a tile to move to or type 'BACK' to pick another piece");
 
@@ -507,7 +684,6 @@
                             }
                             else
                             {
-                                pawnmovesreset(address);
                                 break; }
                         }
                         else if (select.Contains('n') || select.Contains('N'))
