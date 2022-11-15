@@ -92,7 +92,7 @@
               
                 if(Math.Abs(selecti-tilei)!=1 && Math.Abs(selectj-tilej)!=1) { return false; }
                 else if (Math.Abs(selecti - tilei) != 1 && Math.Abs(selecti - tilei) != 0) { return false; }
-                else if (Math.Abs(selectj - tilej) == 0 && Math.Abs(selectj - tilej) == 1) { return false; }
+                else if (Math.Abs(selectj - tilej) != 0 && Math.Abs(selectj - tilej) != 1) { return false; }
                 else return true;
 
 
