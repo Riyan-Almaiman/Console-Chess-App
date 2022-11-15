@@ -20,7 +20,7 @@
             int turn = 4;
 
             string[,] BoardLayout = new string[8, 8];
-
+            movecheck.initialize();
             string[] Rows = { "1", "2", "3", "4", "5", "6", "7", "8" };
             string[] Columns = { "A", "B", "C", "D", "E", "F", "G", "H" };
             List<string> AddressList = new List<string>();
@@ -436,10 +436,13 @@
                 void pawnmoves(int[] selectindex)
                 {
 
+
                     foreach (string i in BoardLayout)
                     {
                         int[] arr = indextile(i);
-                        if (pawnlogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        if (pawnlogic(selectindex, arr) ) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+
 
 
 
@@ -447,19 +450,10 @@
                     }
 
                     Console.Clear();
-                    changes.Print();
+                    movecheck.Print();
                     Thread.Sleep(1000);
 
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
-
-                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
-
-
-
-
-                    }
+                  
                     Console.Clear();
                     changes.Print();
 
@@ -471,7 +465,9 @@
                     foreach (string i in BoardLayout)
                     {
                         int[] arr = indextile(i);
-                        if (queenlogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        if (queenlogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+
 
 
 
@@ -479,19 +475,10 @@
                     }
 
                     Console.Clear();
-                    changes.Print();
+                    movecheck.Print();
                     Thread.Sleep(1000);
 
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
 
-                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
-
-
-
-
-                    }
                     Console.Clear();
                     changes.Print();
 
@@ -502,7 +489,9 @@
                     foreach (string i in BoardLayout)
                     {
                         int[] arr = indextile(i);
-                        if (knightlogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        if (knightlogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+
 
 
 
@@ -510,19 +499,10 @@
                     }
 
                     Console.Clear();
-                    changes.Print();
+                    movecheck.Print();
                     Thread.Sleep(1000);
 
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
 
-                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
-
-
-
-
-                    }
                     Console.Clear();
                     changes.Print();
 
@@ -532,10 +512,9 @@
                 {
                     foreach (string i in BoardLayout)
                     {
-                        
                         int[] arr = indextile(i);
-                        if (rooklogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
-                        if (rooklogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        if (rooklogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
 
 
 
@@ -544,19 +523,10 @@
                     }
 
                     Console.Clear();
-                    changes.Print();
+                    movecheck.Print();
                     Thread.Sleep(1000);
 
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
 
-                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
-
-
-
-
-                    }
                     Console.Clear();
                     changes.Print();
 
@@ -567,7 +537,9 @@
                     foreach (string i in BoardLayout)
                     {
                         int[] arr = indextile(i);
-                        if (bishoplogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        if (bishoplogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+
 
 
 
@@ -575,22 +547,12 @@
                     }
 
                     Console.Clear();
-                    changes.Print();
+                    movecheck.Print();
                     Thread.Sleep(1000);
 
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
 
-                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
-
-
-
-
-                    }
                     Console.Clear();
                     changes.Print();
-
 
                 }
                 void kingmoves(int[] selectindex)
@@ -598,7 +560,9 @@
                     foreach (string i in BoardLayout)
                     {
                         int[] arr = indextile(i);
-                        if (kinglogic(selectindex, arr) && changes.BoardLayout[arr[0], arr[1]] == "  ") { changes.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        if (kinglogic(selectindex, arr)) { movecheck.BoardLayout[arr[0], arr[1]] = "XX"; }
+                        else movecheck.BoardLayout[arr[0], arr[1]] = changes.BoardLayout[arr[0], arr[1]];
+
 
 
 
@@ -606,22 +570,12 @@
                     }
 
                     Console.Clear();
-                    changes.Print();
+                    movecheck.Print();
                     Thread.Sleep(1000);
 
-                    foreach (string i in BoardLayout)
-                    {
-                        int[] arr = indextile(i);
 
-                        if (changes.BoardLayout[arr[0], arr[1]] == "XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
-
-
-
-
-                    }
                     Console.Clear();
                     changes.Print();
-
 
                 }
                 void tileselect()
