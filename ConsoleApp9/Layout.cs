@@ -61,7 +61,7 @@ namespace ConsoleApp9
             foreach (string i in BoardLayout)
             {
 
-                if (i.ToUpper() == i&&!i.Contains(' '))
+                if (i.ToUpper() == i&&!i.Contains(' ')&&i!="XX")
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     if (count == 8)
@@ -96,7 +96,14 @@ namespace ConsoleApp9
                     Console.ResetColor();
 
                 }
-                else if (i.ToUpper() != i)
+                else if (i == "XX")
+                {
+
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("|  {0}  |", i); Console.ResetColor();
+                    count++;
+                }
+                else if (i.ToUpper() != i && i != "XX")
                 {
                     Console.ForegroundColor= ConsoleColor.Cyan;
                     if (count == 8)
@@ -155,8 +162,10 @@ namespace ConsoleApp9
                         printnum();
 
                     }
+                    
+
                     else
-                    {
+                            {
                         Console.Write("|  {0}  |", i);
                         count++;
                     }

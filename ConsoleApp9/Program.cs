@@ -14,6 +14,9 @@
             }
 
             PrintBoard changes = new PrintBoard();
+            PrintBoard movecheck = new PrintBoard();
+
+
             int turn = 4;
 
             string[,] BoardLayout = new string[8, 8];
@@ -24,6 +27,23 @@
 
             int[] arr = new int[2];
             //indexes for comparison and logic 
+            int[] indexselecttest(string select)
+            {
+                int[] array = new int[2];
+                for (int i = 0; i <= 7; i++)
+                {
+
+                    for (int j = 0; j <= 7; j++)
+                    {
+
+
+                        if (changes.BoardLayout[i, j] == select) { array[0] = i; array[1] = j; }
+
+                    }
+
+                }
+                return array;
+            }
             int[] indexselect(string select)
             {
                 int[] array = new int[2];
@@ -120,19 +140,19 @@
                     {
                         return true;
                     }
-                    if (selecti - tilei == 1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' ')) { return true; }
-                    if (selecti - tilei == 1 && Math.Abs(selectj - tilej) == 1 && changes.pieces.Contains(changes.BoardLayout[tilei, tilej])) { return true; }
+                     if (selecti - tilei == 1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' ')) { return true; }
+                     if (selecti - tilei == 1 && Math.Abs(selectj - tilej) == 1 && changes.pieces.Contains(changes.BoardLayout[tilei, tilej])) { return true; }
                     else return false;
 
                 }
                 else
                 {
-                    if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei - 1, tilej].Contains(' ')&&selectj-tilej==0)
+                    if (selecti - tilei == -2 && selecti == 1 && selectj - tilej == 0 && changes.BoardLayout[tilei, tilej].Contains(' ') && changes.BoardLayout[tilei +1, tilej].Contains(' ')&&selectj-tilej==0)
                     {
                         return true;
                     }
-                    if (selecti - tilei == -1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' ')) { return true; }
-                    if (selecti - tilei == -1 && Math.Abs(selectj - tilej) == 1 && changes.pieces.Contains(changes.BoardLayout[tilei, tilej])) { return true; }
+                     if (selecti - tilei == -1 && tilej == selectj && changes.BoardLayout[tilei, tilej].Contains(' ')) { return true; }
+                     if (selecti - tilei == -1 && Math.Abs(selectj - tilej) == 1 && changes.pieces.Contains(changes.BoardLayout[tilei, tilej])) { return true; }
                     else return false;
                 }
 
@@ -392,32 +412,69 @@
                         else if (changes.deadpieces.Contains(select)) { Console.WriteLine("Piece does not exist on the board"); }
                         else
                         {
+                            
                             break; }
 
                     }
                 }
-
+                
                 pieceselect();
-
+                if (select.Contains('P') || select.Contains('p'))
+                {
+                    pawnmoves(address);
+                    Thread.Sleep(1000);
+                    pawnmovesreset(address);
+                }
                 tileselect();
 
+                void pawnmoves(int[] selectindex)
+                {
 
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+                        if (pawnlogic(selectindex, arr)&& changes.BoardLayout[arr[0], arr[1]]=="  ") { changes.BoardLayout[arr[0],arr[1]] = "XX"; }
+
+
+
+
+                    }
+
+                    Console.Clear();
+                    changes.Print();
+
+                }
+                void pawnmovesreset(int[] selectindex)
+                {
+                    foreach (string i in BoardLayout)
+                    {
+                        int[] arr = indextile(i);
+
+                        if (changes.BoardLayout[arr[0], arr[1]]=="XX") { changes.BoardLayout[arr[0], arr[1]] = "  "; }
+
+
+
+
+                    }
+                    Console.Clear();
+                    changes.Print();
+
+
+                }
                 void tileselect()
                 {
                     while (true)
                     {
-                      
-                       
+                        
 
                         Console.WriteLine($"Selected Piece: {select} \nPick a tile to move to or type 'BACK' to pick another piece");
 
                         tile = Console.ReadLine();
                         tile = tile.ToUpper();
 
-                        int[] refadd = indextile(tile);
 
                         if(tile == "BACK") { pieceselect(); }
-                        refadd = indextile(tile);
+                        int[] refadd = indextile(tile);
 
 
                         if (!AddressList.Contains(tile)) { Console.WriteLine("Please input correct tile address (Example: A5)"); }
@@ -448,7 +505,10 @@
                                 Console.ForegroundColor = ConsoleColor.Red; Console.WriteLine("Invalid Move");
                                 Console.ResetColor();
                             }
-                            else { break; }
+                            else
+                            {
+                                pawnmovesreset(address);
+                                break; }
                         }
                         else if (select.Contains('n') || select.Contains('N'))
                         {
@@ -488,7 +548,8 @@
 
 
 
-
+                Console.Clear();
+                changes.Print();
 
 
 
