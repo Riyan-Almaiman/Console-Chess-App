@@ -270,9 +270,10 @@
 
 
                 if (Math.Abs(diff) != Math.Abs(selecti - tilei) && Math.Abs(diff) != Math.Abs(selectj - tilej)) { return false; }
+                if (0 != Math.Abs(selecti - tilei) && 0 != Math.Abs(selectj - tilej)) { return false; }
 
 
-                if(Math.Abs(selecti - tilei)!=0) {
+                if (Math.Abs(selecti - tilei)!=0) {
 
                     for (int i = selecti, j = selectj; i > 0 || i < 7;)
                     {
