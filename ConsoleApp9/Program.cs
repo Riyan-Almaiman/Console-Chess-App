@@ -144,12 +144,6 @@ namespace ChessAppRewrite
                         if (CheckMoves.IsValidMove(SelectedPiece, PieceIndex, arr, board.BoardLayout, board.pieces)) { possiblemoves.BoardLayout[arr[0], arr[1]] = "XX"; }
                         else possiblemoves.BoardLayout[arr[0], arr[1]] = board.BoardLayout[arr[0], arr[1]];
 
-
-
-
-
-
-
                     }
                     possiblemoves.turn = board.turn;
                     Console.Clear();
@@ -243,11 +237,6 @@ namespace ChessAppRewrite
                         else if (SelectedPiece == board.BoardLayout[i, j]) { board.BoardLayout[i, j] = "  "; }
 
                     }
-
-
-
-
-
 
                 }
 
