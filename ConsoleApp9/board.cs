@@ -1,19 +1,21 @@
-﻿using Microsoft.Win32.SafeHandles;
-using System.Diagnostics.Metrics;
-using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace ConsoleApp9
+namespace ChessAppRewrite
 {
-    public class PrintBoard
+    public class Board
     {
-        public int turn = 3; 
-         public string[,] BoardLayout = new string[8, 8];
+        public int turn = 3;
+        public string[,] BoardLayout = new string[8, 8];
 
         public List<string> deadpieces { get; set; }
 
         public List<string> pieces { get; set; }
 
-        public PrintBoard()
+        public Board()
         {
 
             pieces = new List<string>();
@@ -24,12 +26,8 @@ namespace ConsoleApp9
 
 
 
-        string[] side1pieces = { "r1", "n1", "b1", "k1", "q1", "b2", "n2", "r2" };
-        string[] side2pieces = {  "R1", "N1", "B1", "Q1", "K1", "B2", "N2", "R2" };
-
-
-        
-
+        string[] Player1pieces = { "r1", "n1", "b1", "k1", "q1", "b2", "n2", "r2" };
+        string[] Player2pieces = { "R1", "N1", "B1", "Q1", "K1", "B2", "N2", "R2" };
 
         public void initialize()
         {
@@ -37,24 +35,24 @@ namespace ConsoleApp9
             {
                 for (int j = 0; j <= 7; j++)
                 {
-                    if (i == 0) { BoardLayout[i, j] = side1pieces[j]; pieces.Add(side2pieces[j]); }
+                    if (i == 0) { BoardLayout[i, j] = Player1pieces[j]; pieces.Add(Player2pieces[j]); }
 
-                    else if (i == 7) { BoardLayout[i, j] = side2pieces[j]; pieces.Add(side1pieces[j]); }
-                
-                    else if (i == 6) { BoardLayout[i, j] = $"P{j+1}"; pieces.Add($"P{j + 1}"); }
+                    else if (i == 7) { BoardLayout[i, j] = Player2pieces[j]; pieces.Add(Player1pieces[j]); }
 
-                    else if (i == 1) { BoardLayout[i, j] = $"p{j+1}"; pieces.Add($"p{j + 1}"); }
+                    else if (i == 6) { BoardLayout[i, j] = $"P{j + 1}"; pieces.Add($"P{j + 1}"); }
+
+                    else if (i == 1) { BoardLayout[i, j] = $"p{j + 1}"; pieces.Add($"p{j + 1}"); }
 
                     else { BoardLayout[i, j] = "  "; }
 
-                   
+
                 }
             }
         }
 
-        public void Print() {
+        public void Print()
+        {
 
-            Console.WriteLine("Legend: Use capital letters if you're green, lowercase if you're blue");
             Console.WriteLine("R = Rook, N = Knight, P = Pawn, K = King, B = Bishop, Q = Queen");
             Console.WriteLine();
 
@@ -64,7 +62,7 @@ namespace ConsoleApp9
             foreach (string i in BoardLayout)
             {
 
-                if (i.ToUpper() == i&&!i.Contains(' ')&&i!="XX")
+                if (i.ToUpper() == i && !i.Contains(' ') && i != "XX")
                 {
                     Console.ForegroundColor = ConsoleColor.Green;
                     if (count == 8)
@@ -99,7 +97,7 @@ namespace ConsoleApp9
                     Console.ResetColor();
 
                 }
-                else if (i == "XX"&&count!=8)
+                else if (i == "XX" && count != 8)
                 {
 
                     Console.ForegroundColor = ConsoleColor.Red;
@@ -108,7 +106,7 @@ namespace ConsoleApp9
                 }
                 else if (i.ToUpper() != i && i != "XX")
                 {
-                    Console.ForegroundColor= ConsoleColor.Cyan;
+                    Console.ForegroundColor = ConsoleColor.Cyan;
                     if (count == 8)
                     {
 
@@ -141,7 +139,8 @@ namespace ConsoleApp9
                     Console.ResetColor();
 
                 }
-                else {
+                else
+                {
                     if (count == 8)
                     {
 
@@ -180,10 +179,10 @@ namespace ConsoleApp9
                         printnum();
 
                     }
-                    
+
 
                     else
-                            {
+                    {
                         Console.Write("|  {0}  |", i);
                         count++;
                     }
@@ -191,10 +190,10 @@ namespace ConsoleApp9
 
             }
 
-            
+
 
             string[] Columns = { "A", "B", "C", "D", "E", "F", "G", "H" };
-            foreach(string letter in Columns)
+            foreach (string letter in Columns)
             {
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
 
@@ -208,7 +207,7 @@ namespace ConsoleApp9
 
             Console.WriteLine();
             Console.WriteLine("-------------------------------------------------------------------------");
-            Console.ForegroundColor=ConsoleColor.Red;
+            Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"List of Pieces Captured: {string.Join(", ", deadpieces)}");
             Console.ResetColor();
 
@@ -229,22 +228,16 @@ namespace ConsoleApp9
                 Console.ResetColor();
             }
 
-            if (deadpieces.Contains("K1") )
+            if (deadpieces.Contains("K1"))
             {
                 Console.WriteLine("Game over! Blue wins!");
             }
-            if ( deadpieces.Contains("k1"))
+            if (deadpieces.Contains("k1"))
             {
                 Console.WriteLine("Game over! Green wins");
             }
 
         }
-
-
-
-
-
-
 
     }
 }
