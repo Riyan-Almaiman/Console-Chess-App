@@ -1,7 +1,7 @@
 ﻿using System.Net;
 using System.Threading.Channels;
 
-namespace ChessAppRewrite
+namespace Chessapp
 {
     internal class Program
     {

@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Channels;
 using System.Threading.Tasks;
 
-namespace ChessAppRewrite
+namespace Chessapp
 {
     public class CheckMoves
     {
