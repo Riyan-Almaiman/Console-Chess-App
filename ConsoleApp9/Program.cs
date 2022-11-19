@@ -10,7 +10,6 @@ namespace Chessapp
             //new game board
             Board board = new Board();
             //board to show possible moves
-            Board possiblemoves = new Board();
 
             //create a board of tile addresses for comparisons 
             string[,] TileAddresses = new string[8, 8];
@@ -137,6 +136,8 @@ namespace Chessapp
                 //shows possible moves
                 void ShowPossibleMoves(int[] Indexpiece)
                 {
+                    Board possiblemoves = new Board();
+                    possiblemoves.deadpieces = board.deadpieces;
                     List<object> potentialcaptures = new List<object>();
                     foreach (string i in TileAddresses)
                     {

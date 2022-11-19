@@ -208,8 +208,28 @@ namespace Chessapp
             Console.WriteLine();
             Console.WriteLine("-------------------------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine($"List of Pieces Captured: {string.Join(", ", deadpieces)}");
+            Console.Write($"List of Pieces Captured: ");
             Console.ResetColor();
+
+            foreach (string piece in deadpieces)
+            {
+                if (piece.ToUpper() == piece)
+                {
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    Console.Write($"{piece}  ");
+                    Console.ResetColor();
+                }
+                else {
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    Console.Write($"{piece}  ");
+                    Console.ResetColor();
+                }
+            }
+
+
+            Console.WriteLine();
+
+
 
             Console.WriteLine("-------------------------------------------------------------------------");
 
