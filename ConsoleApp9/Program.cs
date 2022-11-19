@@ -124,7 +124,6 @@ namespace Chessapp
                         {
                             PieceIndex = indexOfPiece(SelectedPiece);
 
-                            ShowPossibleMoves(PieceIndex);
 
                             break;
                         }
@@ -138,21 +137,33 @@ namespace Chessapp
                 //shows possible moves
                 void ShowPossibleMoves(int[] Indexpiece)
                 {
+                    List<object> potentialcaptures = new List<object>();
                     foreach (string i in TileAddresses)
                     {
                         int[] arr = indexOfAddress(i);
                         if (CheckMoves.IsValidMove(SelectedPiece, PieceIndex, arr, board.BoardLayout, board.pieces)) { possiblemoves.BoardLayout[arr[0], arr[1]] = "XX"; }
                         else possiblemoves.BoardLayout[arr[0], arr[1]] = board.BoardLayout[arr[0], arr[1]];
+                        if (CheckMoves.IsValidMove(SelectedPiece, PieceIndex, arr, board.BoardLayout, board.pieces) && board.BoardLayout[arr[0],arr[1]]!="  ") { potentialcaptures.Add(arr); }
+
 
                     }
                     possiblemoves.turn = board.turn;
                     Console.Clear();
                     possiblemoves.Print();
-                    Thread.Sleep(2000);
 
+                    if(potentialcaptures.Count > 0)
+                    {
+                        Thread.Sleep(1000);
+                        foreach (int[] i in potentialcaptures)
+                        {
+                            possiblemoves.BoardLayout[i[0], i[1]] = board.BoardLayout[i[0], i[1]];
+                        }
+                        Console.Clear();
 
-                    Console.Clear();
-                    board.Print();
+                        possiblemoves.Print();
+
+                    }
+
 
 
                 }
@@ -161,8 +172,8 @@ namespace Chessapp
                 while (true)
                 {
 
-                    Console.Clear();
-                    board.Print();
+
+                    ShowPossibleMoves(PieceIndex);
 
                     void picktilemessage()
                     {
