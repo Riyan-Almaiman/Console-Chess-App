@@ -173,7 +173,7 @@ namespace Chessapp
                             Console.ForegroundColor = ConsoleColor.Green;
                             Console.WriteLine($"{SelectedPiece}");
                             Console.ResetColor();
-                            Console.WriteLine("Pick a tile to move to or type 'back' to pick another piece");
+                            Console.WriteLine("Pick a tile to move piece to by typing the address e.g 'a5' or 'A5' or type 'back' to pick another piece.");
 
                         }
                         else
@@ -183,7 +183,7 @@ namespace Chessapp
                             Console.ForegroundColor = ConsoleColor.Cyan;
                             Console.WriteLine($"{SelectedPiece}");
                             Console.ResetColor();
-                            Console.WriteLine("Pick a tile to move to or type 'back' to pick another piece");
+                            Console.WriteLine("Pick a tile to move piece to by typing the address e.g 'a5' or 'A5' or type 'back' to pick another piece.");
 
                         }
                     }
