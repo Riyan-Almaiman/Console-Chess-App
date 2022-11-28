@@ -1,12 +1,18 @@
-﻿using System.Net;
+﻿using System;
+using System.Globalization;
+using System.Net;
+using System.Security.Cryptography.X509Certificates;
+using System.Text;
 using System.Threading.Channels;
-
+using WebSocketSharp;
 namespace Chessapp
 {
     internal class Program
     {
         static void Main(string[] args)
         {
+            WebSocket ws = new WebSocket("ws://localhost:5000");
+            ws.Connect();
             //new game board
             Board board = new Board();
             //board to show possible moves
@@ -70,6 +76,48 @@ namespace Chessapp
             //start game
             while (true)
             {
+                ws.OnMessage += movereceived;
+
+
+                void movereceived(object sender, MessageEventArgs e)
+                    {
+
+
+                    string data = e.Data;
+                    string[,] newlayout = new string[8, 8];
+                    data = data.Replace("-", "");
+                    string result = string.Concat(Enumerable
+                        .Range(0, data.Length / 2)
+                        .Select(i => (char)int.Parse(data.Substring(2 * i, 2), NumberStyles.HexNumber)));
+
+                    String[] strlist = result.Split(',');
+                    int index = 1;
+
+                    for (int i = 0; i <= 7; i++)
+                        {
+
+
+                        for (int j = 0; j <= 7; j++)
+
+                            {
+                            
+                            
+                                newlayout[i, j] = strlist[index];
+                            
+                            index++;
+
+                            }
+
+                        }
+
+                         board.BoardLayout = newlayout;
+
+                    board.turn = Convert.ToInt32(strlist[0]);
+                    Console.Clear();
+
+                    board.Print();
+
+                }
                 //if king is captured end the game
                 if (board.deadpieces.Contains("K1") || board.deadpieces.Contains("k1"))
                 {
@@ -78,6 +126,8 @@ namespace Chessapp
                     break;
                 }
                 Console.WriteLine();
+
+                Console.Clear();
 
                 board.Print();
 
@@ -255,9 +305,13 @@ namespace Chessapp
                 //print new board and change turns
                 board.turn++;
                 Console.Clear();
+                string message = Convert.ToString(board.turn);
+                foreach (string tile in board.BoardLayout) {  message = message+ ',' + tile;  }
+                ws.Send(message);
 
 
 
+                
             }
         }
     }

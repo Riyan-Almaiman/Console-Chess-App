@@ -12,4 +12,8 @@
     <Content Include="24544.ico" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="websocketsharp.core" Version="1.0.0" />
+  </ItemGroup>
+
 </Project>

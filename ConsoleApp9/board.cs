@@ -4,8 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Chessapp
-{
+
     public class Board
     {
         public int turn = 3;
@@ -260,4 +259,4 @@ namespace Chessapp
         }
 
     }
-}
+
