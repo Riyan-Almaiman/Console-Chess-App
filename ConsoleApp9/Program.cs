@@ -11,8 +11,7 @@ namespace Chessapp
     {
         static void Main(string[] args)
         {
-            WebSocket ws = new WebSocket("ws://localhost:5000");
-            ws.Connect();
+       
             //new game board
             Board board = new Board();
             //board to show possible moves
@@ -76,7 +75,6 @@ namespace Chessapp
             //start game
             while (true)
             {
-                ws.OnMessage += movereceived;
 
 
                 void movereceived(object sender, MessageEventArgs e)
@@ -147,7 +145,7 @@ namespace Chessapp
 
 
 
-                        Console.WriteLine("select piece to move");
+                        Console.WriteLine("select piece to move (type out the piece name e.g p5)");
 
                         SelectedPiece = Console.ReadLine();
 
@@ -307,7 +305,6 @@ namespace Chessapp
                 Console.Clear();
                 string message = Convert.ToString(board.turn);
                 foreach (string tile in board.BoardLayout) {  message = message+ ',' + tile;  }
-                ws.Send(message);
 
 
 
